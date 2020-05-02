@@ -31,8 +31,6 @@ public class LibraryGUI {
    		 	BorderPane menuPane = fxmlLoader.load();	
    		 	mainPanel.getChildren().clear();
    		 	mainPanel.setCenter(menuPane);
-    	}else {
-    		labMsg.setText("nombre o codigo incorrecto");
     	}
     }
 	public LibraryGUI(Library l)  {

@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
@@ -14,13 +13,6 @@
          </font>
       </Label>
    </top>
-   <center>
-      <TextField fx:id="txtChairsNumber" alignment="CENTER" prefHeight="25.0" prefWidth="432.0" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-   </center>
    <bottom>
       <Label fx:id="labMsg" BorderPane.alignment="CENTER">
          <font>
@@ -35,4 +27,11 @@
          </font>
       </Button>
    </right>
+   <center>
+      <Label fx:id="labChairsAmount" prefHeight="17.0" prefWidth="211.0" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </center>
 </BorderPane>
