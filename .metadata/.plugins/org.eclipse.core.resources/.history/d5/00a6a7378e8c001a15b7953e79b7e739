@@ -1,0 +1,10 @@
+package ui;
+import model.*;
+public class LibraryGUI {
+	private Library library;
+	
+	public LibraryGUI(Library l) {
+		library = l;
+	}
+	
+}

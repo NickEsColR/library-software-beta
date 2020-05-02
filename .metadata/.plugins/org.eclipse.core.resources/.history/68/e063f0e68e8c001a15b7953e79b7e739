@@ -1,0 +1,21 @@
+package ui;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.BorderPane;
+import model.*;
+public class LibraryGUI {
+	private Library library;
+	@FXML
+    private BorderPane mainPanel;
+	
+	public LibraryGUI(Library l) {
+		library = l;
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+	}
+	
+	
+}
