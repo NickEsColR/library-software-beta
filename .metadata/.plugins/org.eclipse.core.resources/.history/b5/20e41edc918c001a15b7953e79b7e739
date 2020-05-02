@@ -33,17 +33,15 @@ public class LibraryGUI {
    		 	mainPanel.setCenter(menuPane);
     	}
     }
-	public LibraryGUI(Library l)  {
+	public LibraryGUI(Library l) throws IOException {
 		library = l;
-	}
-	
-	public void openMenu() throws IOException{
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu.fxml"));
 		 fxmlLoader.setController(this);    	
 		 BorderPane menuPane = fxmlLoader.load();	
 		 mainPanel.getChildren().clear();
 		 mainPanel.setCenter(menuPane);
 	}
+	
     @FXML
     void showChairsAmount(ActionEvent event) throws IOException {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("chairs-number.fxml"));

@@ -32,7 +32,6 @@ public class Main extends Application{
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Library Software");
 		primaryStage.show();
-		lgui.openMenu();
 	}
 
 }
