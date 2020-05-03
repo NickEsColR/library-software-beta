@@ -7,10 +7,19 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Label text="Menu Empleado" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="22.0" />
+         </font>
+         <effect>
+            <Blend />
+         </effect>
+      </Label>
+   </top>
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="417.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#showAddEmployee" text="Agregar Empleado">
                <font>
@@ -57,12 +66,37 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutX="158.0" layoutY="301.0" mnemonicParsing="false" onAction="#showLeadBook" text="Prestar libro">
+            <Button layoutX="16.0" layoutY="273.0" mnemonicParsing="false" onAction="#showAddChair" prefHeight="39.0" prefWidth="164.0" text="Agregar silla">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutX="153.0" layoutY="353.0" mnemonicParsing="false" onAction="#logOut" text="Cerrar Sesion">
+            <Button layoutX="242.0" layoutY="225.0" mnemonicParsing="false" onAction="#showRemoveChair" prefHeight="39.0" prefWidth="166.0" text="Eliminar silla">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="242.0" layoutY="273.0" mnemonicParsing="false" onAction="#showRemoveTable" prefHeight="39.0" prefWidth="166.0" text="Eliminar mesa">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="16.0" layoutY="322.0" mnemonicParsing="false" onAction="#showAddTable" prefHeight="39.0" prefWidth="163.0" text="Agregar mesa">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="14.0" layoutY="372.0" mnemonicParsing="false" onAction="#showAddChairToTable" text="Agregar silla a una mesa">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="241.0" layoutY="322.0" mnemonicParsing="false" onAction="#showDeliverBook" prefHeight="39.0" prefWidth="167.0" text="Devolver libro">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="282.0" layoutY="372.0" mnemonicParsing="false" onAction="#showUnban" text="Desbanear ">
                <font>
                   <Font size="18.0" />
                </font>
@@ -70,14 +104,18 @@
          </children>
       </Pane>
    </center>
-   <top>
-      <Label text="Menu Empleado" BorderPane.alignment="CENTER">
+   <right>
+      <Button mnemonicParsing="false" onAction="#logOut" text="Cerrar Sesion" BorderPane.alignment="CENTER">
          <font>
-            <Font size="22.0" />
+            <Font size="18.0" />
          </font>
-         <effect>
-            <Blend />
-         </effect>
-      </Label>
-   </top>
+      </Button>
+   </right>
+   <bottom>
+      <Button mnemonicParsing="false" onAction="#showLeadBook" text="Prestar libro" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </bottom>
 </BorderPane>
