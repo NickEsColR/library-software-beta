@@ -1,0 +1,56 @@
+package model;
+
+public class Shelf {
+	
+	//constant
+	
+	public static int MAX_BOOK = 100;
+	
+	//attributes
+	
+	private int code;
+	
+	//relations
+	
+	private Shelf father;
+	private Shelf right;
+	private Shelf left;
+	
+	//methods
+	
+	public Shelf(int c) {
+		code = c;
+	}
+	
+	public int getCode() {
+		return code;
+	}
+	
+	public Shelf getFather() {
+		return father;
+	}
+
+	public void setFather(Shelf father) {
+		this.father = father;
+	}
+
+	public Shelf getRight() {
+		return right;
+	}
+
+	public void setRight(Shelf right) {
+		this.right = right;
+	}
+
+	public Shelf getLeft() {
+		return left;
+	}
+
+	public void setLeft(Shelf left) {
+		this.left = left;
+	}
+
+	public boolean searchBook() {
+		return false;
+	}
+}
