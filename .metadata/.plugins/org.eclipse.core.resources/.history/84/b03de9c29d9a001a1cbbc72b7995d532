@@ -1,0 +1,5 @@
+package customException;
+
+public class NoChairException extends Exception {
+
+}
