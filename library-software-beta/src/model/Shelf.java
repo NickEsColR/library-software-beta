@@ -8,7 +8,7 @@ public class Shelf implements KeepLimitBook{
 	
 	//attributes
 	
-	private int code;
+	private String code;
 	
 	//relations
 	
@@ -19,12 +19,12 @@ public class Shelf implements KeepLimitBook{
 	
 	//methods
 	
-	public Shelf(int c) {
+	public Shelf(String c) {
 		code = c;
 		books = new Book[MAX_BOOK];
 	}
 	
-	public int getCode() {
+	public String getCode() {
 		return code;
 	}
 	

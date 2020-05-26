@@ -9,10 +9,10 @@ public class Employee extends Person implements PostRestriction{
 
 	//methods
 	
-	public Employee(String name, String lastName, String typeID, String numID, String post, int leadBooks) {
+	public Employee(String name, String lastName, String typeID, String numID, String post) {
 		super(name, lastName, typeID, numID);
 		this.post = post;
-		this.leadBooks = leadBooks;
+		leadBooks = 0;
 	}
 
 	public String getPost() {

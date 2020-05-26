@@ -8,9 +8,9 @@ public class Magazine extends Book {
  
 	//methods
 
-	public Magazine(String title, String author, String code, String dateOfPublication, int edition,
+	public Magazine(String title, String author, String code,String gender, String dateOfPublication, int edition,
 			String ageRestriction, String type) {
-		super(title, author, code, dateOfPublication, edition, ageRestriction);
+		super(title, author, code, gender, dateOfPublication, edition, ageRestriction);
 		this.type = type;
 	}
 

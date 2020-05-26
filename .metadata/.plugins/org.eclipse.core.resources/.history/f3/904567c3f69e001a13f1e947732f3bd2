@@ -1,0 +1,367 @@
+package ui;
+import java.io.IOException;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import model.*;
+public class LibraryGUI {
+	private Library library;
+	@FXML
+    private BorderPane mainPanel;
+    @FXML
+    private TextField txtName;
+
+    @FXML
+    private TextField txtCode;
+
+    @FXML
+    private Label labMsg;
+    
+    @FXML
+    private TextField txtTitle;
+
+    @FXML
+    private TextField txtAutor;
+
+    @FXML
+    private TextField txtGender;
+
+    @FXML
+    private TextField txtEdition;
+
+    @FXML
+    private TextField txtYear;
+
+    @FXML
+    private TextField txtMonth;
+
+    @FXML
+    private TextField txtDay;
+    @FXML
+    private TextField txtAgeRestriction;
+
+    
+    @FXML
+    void logIn(ActionEvent event) throws InterruptedException, IOException {
+    	if(txtName.getText().equalsIgnoreCase("admin") && txtCode.getText().equalsIgnoreCase("admin")) {
+    		labMsg.setText("ingreso exitoso");
+    		Thread.sleep(100);
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-employee.fxml"));
+   		 	fxmlLoader.setController(this);    	
+   		 	BorderPane menuPane = fxmlLoader.load();	
+   		 	mainPanel.getChildren().clear();
+   		 	mainPanel.setCenter(menuPane);
+    	}else {
+    		labMsg.setText("nombre o codigo incorrecto");
+    	}
+    }
+	public LibraryGUI(Library l)  {
+		library = l;
+	}
+	
+	public void openMenu() throws IOException{
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+	}
+    @FXML
+    void showChairsAmount(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("chairs-number.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+
+    @FXML
+    void showLogInMenu(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("log-in.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+
+    @FXML
+    void showSearchBookMenu(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("search-book.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+
+    @FXML
+    void showTableChairsMenu(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("search-table-chairs.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void backMenu(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void logOut(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    
+    @FXML
+    void showAddBook(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-book.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void addBook(ActionEvent event) throws IOException {
+    	if(txtTitle.getText().trim().isEmpty()|txtAutor.getText().trim().isEmpty()&&txtGender.getText().trim().isEmpty()|
+    			txtEdition.getText().trim().isEmpty()|txtYear.getText().trim().isEmpty()|txtMonth.getText().trim().isEmpty()|
+    			txtDay.getText().trim().isEmpty()|txtCode.getText().trim().isEmpty()|txtAgeRestriction.getText().trim().isEmpty()) {
+    		labMsg.setText("Celdas vacias, ¡por favor llene todas las celdas");
+    	}else {
+    		try {
+    			String title = txtTitle.getText();
+    			String author = txtAutor.getText();
+    			String gender = txtGender.getText();
+    			int edition = Integer.parseInt(txtEdition.getText());
+    			String date = txtDay.getText()+ "/"+txtMonth.getText()+"/"+txtYear.getText();
+    			String code = txtCode.getText();
+    			String age = txtAgeRestriction.getText();
+    			library.addBook(title, author, code, gender, date,  edition,  age);
+    			backEmployeeMenu();
+    		}catch(NumberFormatException e) {
+    			labMsg.setText("La celda edicion,año mes y dia debe ser un numero entero, favor digitar un numero valido");
+    		}
+    	}
+    	
+    }
+    @FXML
+    void showAddClient(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-client.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void addClient(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-employee.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void showAddEmployee(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-employee.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void addEmployee(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-employee.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void showAddMagazine(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-magazine.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void addMagazine(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-employee.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void showAddShelf(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-shelf.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void addShelf(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-employee.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void showLeadBook(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("lead-book.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void leadBook(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-employee.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void showRemoveBook(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("remove-book.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void removeBook(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-employee.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void showRemoveClient(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("remove-client.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void removeClient(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-employee.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void showRemoveEmployee(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("remove-employee.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void removeEmployee(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-employee.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void showRemoveShelf(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("remove-shelf.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    
+    @FXML
+    void removeShelf(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-employee.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    
+    @FXML
+    void showAddChair(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-chair.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    
+    @FXML
+    void showAddTable(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-table.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void showAddChairToTable(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-chair-to-table.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void showRemoveChair(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("remove-chair.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void showRemoveTable(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("remove-table.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void showDeliverBook(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("deliver-book.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    @FXML
+    void showUnban(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("unban.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+    
+    public void backEmployeeMenu() throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-employee.fxml"));
+		 fxmlLoader.setController(this);    	
+		 BorderPane menuPane = fxmlLoader.load();	
+		 mainPanel.getChildren().clear();
+		 mainPanel.setCenter(menuPane);
+    }
+}

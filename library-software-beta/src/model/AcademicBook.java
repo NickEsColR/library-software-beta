@@ -9,9 +9,9 @@ public class AcademicBook extends Book {
 	
 	//methods
 	
-	public AcademicBook(String title, String author, String code, String dateOfPublication, int edition,
+	public AcademicBook(String title, String author, String code,String gender, String dateOfPublication, int edition,
 			String ageRestriction, String subject, String sinopsis) {
-		super(title, author, code, dateOfPublication, edition, ageRestriction);
+		super(title, author, code, gender, dateOfPublication, edition, ageRestriction);
 		this.subject = subject;
 		this.sinopsis = sinopsis;
 	}

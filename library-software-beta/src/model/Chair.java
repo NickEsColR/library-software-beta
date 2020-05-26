@@ -8,9 +8,9 @@ public class Chair extends LibraryObject {
 	
 	//methods
 	
-	public Chair(String c, boolean b) {
+	public Chair(String c) {
 		super(c);
-		busy = b;
+		busy = false;
 	}
 
 	public boolean isBusy() {
