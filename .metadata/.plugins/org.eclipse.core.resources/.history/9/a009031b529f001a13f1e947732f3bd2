@@ -1,8 +1,5 @@
 package model;
 
-import customException.NoBookException;
-import customException.NoPersonException;
-
 public class Library {
 	
 	//relations
@@ -220,8 +217,8 @@ Shelf newShelf = new Shelf(c);
 	}
 	
 	
-	public void leadBook(String cC, String cE, String cB) throws NoPersonException,NoBookException{
-		
+	public void leadBook(String cC, String cE, String cB) {
+		Client leadC = searchClient(cC);
 	}
 	
 public Employee searchEmployee(String numID) {
@@ -262,17 +259,17 @@ public Employee searchEmployee(String numID) {
 		
 		Person current = firstPerson;
 		
-		return searchClient(current, numID);
+		return searchClient(current, typeID, numID);
 		
 	}
 	
-	private Client searchClient(Person current, String numID) {
+	private Client searchClient(Person current, String typeID, String numID) {
 		
 		Client search;
  		
  		if(current != null) {
 			
-			if(current.getNumID().equals(numID) && (current instanceof Client)) {
+			if(current.getTypeID().equals(typeID) && current.getNumID().equals(numID) && (current instanceof Client)) {
 				
 				search =  (Client) current;
 				
@@ -280,7 +277,7 @@ public Employee searchEmployee(String numID) {
 				
 				current = current.getNext();
 				
-				search = searchClient(current, numID);
+				search = searchClient(current, typeID, numID);
 				
 			}
 			

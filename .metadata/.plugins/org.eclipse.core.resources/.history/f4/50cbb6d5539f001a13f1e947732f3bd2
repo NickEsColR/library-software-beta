@@ -221,7 +221,12 @@ Shelf newShelf = new Shelf(c);
 	
 	
 	public void leadBook(String cC, String cE, String cB) throws NoPersonException,NoBookException{
-		
+		Client leadC = searchClient(cC);
+		Employee leadE = searchEmployee(cE);
+		Book leadB = searchBookForCode(cB);  
+		if(leadC == null) {
+			throw new NoPersonException("Cliente",cC);
+		}
 	}
 	
 public Employee searchEmployee(String numID) {

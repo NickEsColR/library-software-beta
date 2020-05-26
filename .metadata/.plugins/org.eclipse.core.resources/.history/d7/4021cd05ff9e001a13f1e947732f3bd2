@@ -71,6 +71,8 @@ public class LibraryGUI {
     @FXML
     private TextField txtTableCode;
 
+    @FXML
+    private Label labMsg;
 
     @FXML
     void addChairToTable(ActionEvent event) {

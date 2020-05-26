@@ -1,8 +1,5 @@
 package model;
 
-import customException.NoBookException;
-import customException.NoPersonException;
-
 public class Library {
 	
 	//relations
@@ -220,25 +217,25 @@ Shelf newShelf = new Shelf(c);
 	}
 	
 	
-	public void leadBook(String cC, String cE, String cB) throws NoPersonException,NoBookException{
+	public void leadBook(String cC, String cE, String cB) {
 		
 	}
 	
-public Employee searchEmployee(String numID) {
+public Employee searchEmployee(String typeID, String numID) {
 		
 		Person current = firstPerson;
 		
-		return searchEmployee(current, numID);
+		return searchEmployee(current, typeID, numID);
 		
 	}
 	
- 	private Employee searchEmployee(Person current, String numID) {
+ 	private Employee searchEmployee(Person current, String typeID, String numID) {
 		
- 		Employee search = null;
+ 		Employee search;
  		
  		if(current != null) {
 			
-			if(current.getNumID().equals(numID) && (current instanceof Employee)) {
+			if(current.getTypeID().equals(typeID) && current.getNumID().equals(numID) && (current instanceof Employee)) {
 				
 				search =  (Employee) current;
 				
@@ -246,7 +243,7 @@ public Employee searchEmployee(String numID) {
 				
 				current = current.getNext();
 				
-				search = searchEmployee(current,  numID);
+				search = searchEmployee(current, typeID, numID);
 				
 			}
 			
@@ -258,21 +255,21 @@ public Employee searchEmployee(String numID) {
 		
 	}
 	
-	public Client searchClient (String numID) {
+	public Client searchClient(String typeID, String numID) {
 		
 		Person current = firstPerson;
 		
-		return searchClient(current, numID);
+		return searchClient(current, typeID, numID);
 		
 	}
 	
-	private Client searchClient(Person current, String numID) {
+	private Client searchClient(Person current, String typeID, String numID) {
 		
 		Client search;
  		
  		if(current != null) {
 			
-			if(current.getNumID().equals(numID) && (current instanceof Client)) {
+			if(current.getTypeID().equals(typeID) && current.getNumID().equals(numID) && (current instanceof Client)) {
 				
 				search =  (Client) current;
 				
@@ -280,7 +277,7 @@ public Employee searchEmployee(String numID) {
 				
 				current = current.getNext();
 				
-				search = searchClient(current, numID);
+				search = searchClient(current, typeID, numID);
 				
 			}
 			

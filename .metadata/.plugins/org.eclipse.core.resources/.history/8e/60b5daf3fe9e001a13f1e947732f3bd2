@@ -66,17 +66,6 @@ public class LibraryGUI {
     @FXML
     private TextField txtIsAcademic;
     @FXML
-    private TextField txtChairCode;
-
-    @FXML
-    private TextField txtTableCode;
-
-
-    @FXML
-    void addChairToTable(ActionEvent event) {
-
-    }
-    @FXML
     void logIn(ActionEvent event) throws InterruptedException, IOException {
     	if(txtName.getText().equalsIgnoreCase("admin") && txtCode.getText().equalsIgnoreCase("admin")) {
     		labMsg.setText("ingreso exitoso");
