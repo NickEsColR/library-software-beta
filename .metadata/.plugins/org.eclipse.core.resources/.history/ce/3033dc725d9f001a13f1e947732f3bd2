@@ -141,14 +141,7 @@ public class LibraryGUI {
 		 mainPanel.getChildren().clear();
 		 mainPanel.setCenter(menuPane);
     }
-    @FXML
-    void searchBook(ActionEvent event) {
-    	if(txtTitle.getText().trim().isEmpty()) {
-    		labMsg.setText("digite el nombre del libro o revista");
-    	}else {
-    		
-    	}
-    }
+
     @FXML
     void showTableChairsMenu(ActionEvent event) throws IOException {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("search-table-chairs.fxml"));

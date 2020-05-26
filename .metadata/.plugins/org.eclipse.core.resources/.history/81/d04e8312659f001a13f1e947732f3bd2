@@ -309,41 +309,10 @@ Shelf newShelf = new Shelf(c);
 		}
 	}
 	public void removeLibraryObjectCase2(LibraryObject eliminate) {
-		LibraryObject father = eliminate.getFather();
 		
-		if(eliminate.getLeft() == null) {
-			
-			LibraryObject hijo = eliminate.getRight();
-			
-			father.setRight(hijo);
-			hijo.setFather(father);
-			
-		}else {
-			
-			LibraryObject hijo = eliminate.getLeft();
-			
-			father.setLeft(hijo);
-			hijo.setFather(father);
-		}
 	}
 	public void removeLibraryObjectCase3(LibraryObject eliminate) {
-		LibraryObject replace = eliminate;
-
-		replace = replace.getLeft();
-		while(replace.getRight() !=null) {
-			replace = replace.getRight();
-			
-		}
-		eliminate.getLeft().setFather(replace);
-		replace.getFather().setRight(replace.getLeft());
-		replace.setLeft(eliminate.getLeft());
-		eliminate.getRight().setFather(replace);
-		replace.setRight(eliminate.getRight());
-		if(eliminate.getFather().getLeft().equals(eliminate)) {
-			eliminate.getFather().setLeft(replace);
-		}else {
-			eliminate.getFather().setRight(replace);
-		}	
+		
 	}
 public void removeShelf(String code) {
 		
@@ -414,7 +383,7 @@ public void removeShelf(String code) {
 	}
 
 	private void removeCase3(Shelf eliminate) {
-		Shelf replace = eliminate;
+		Shelf replace = rootShelf;
 
 			replace = replace.getLeft();
 			while(replace.getRight() !=null) {

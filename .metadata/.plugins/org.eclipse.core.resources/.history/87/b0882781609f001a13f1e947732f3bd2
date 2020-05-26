@@ -208,151 +208,19 @@ Shelf newShelf = new Shelf(c);
 		}
 	}
 	public void removeChair(String c) {
-		LibraryObject eliminate = searchChair(c);
-		if(eliminate != null) {
-			if(eliminate == rootLibraryObject) {
-				removeLibraryObjectFather();
-			}else if(eliminate.getLeft() == null && eliminate.getRight() == null) {
-				
-				removeLibraryObjectCase1(eliminate);
-				
-			}else if(eliminate.getLeft() != null ) {
-				
-				if(eliminate.getRight() == null) {
-					
-					removeLibraryObjectCase2(eliminate);
-					
-				}
-				
-			}else if(eliminate.getRight() != null){
-				
-				if(eliminate.getLeft() == null) {
-					
-					removeLibraryObjectCase2(eliminate);
-					
-				}
-				
-			}else {
-				
-				removeLibraryObjectCase3(eliminate);
-				
-			}	
-		}
+		
 	}
 	
-	public void removeTable(String c) {	
-		LibraryObject eliminate = searchTable(c);
-		if(eliminate != null) {
-			if(eliminate == rootLibraryObject) {
-				removeLibraryObjectFather();
-			}else if(eliminate.getLeft() == null && eliminate.getRight() == null) {
-				
-				removeLibraryObjectCase1(eliminate);
-				
-			}else if(eliminate.getLeft() != null ) {
-				
-				if(eliminate.getRight() == null) {
-					
-					removeLibraryObjectCase2(eliminate);
-					
-				}
-				
-			}else if(eliminate.getRight() != null){
-				
-				if(eliminate.getLeft() == null) {
-					
-					removeLibraryObjectCase2(eliminate);
-					
-				}
-				
-			}else {
-				
-				removeLibraryObjectCase3(eliminate);
-				
-			}	
-		}
-	}
-	public void removeLibraryObjectFather() {
-		LibraryObject replace = rootLibraryObject;
-		if(rootLibraryObject.getLeft()!=null) {
-			replace = replace.getLeft();
-			while(replace.getRight() !=null) {
-				replace = replace.getRight();
-				
-			}
-			rootLibraryObject.getLeft().setFather(replace);
-			replace.getFather().setRight(replace.getLeft());
-			replace.setLeft(rootLibraryObject.getLeft());
-			if(rootLibraryObject.getRight()!=null) {
-				rootLibraryObject.getRight().setFather(replace);
-				replace.setRight(rootLibraryObject.getRight());
-			}
-		}else if(rootLibraryObject.getRight()!=null){
-			replace = replace.getRight();
-			while(replace.getLeft() !=null) {
-				replace = replace.getLeft();
-			}
-			replace.getFather().setRight(replace.getLeft());
-			rootLibraryObject.getRight().setFather(replace);
-			replace.setRight(rootLibraryObject.getRight());
-		}else {
-			rootLibraryObject = null;
-		}
-	}
-	public void removeLibraryObjectCase1(LibraryObject eliminate) {
-		LibraryObject father = eliminate.getFather();
+	public void removeTable(String c) {
 		
-		if(father.getLeft().equals(eliminate)) {
-			father.setLeft(null);
-		}else {
-			father.setRight(null);
-		}
-	}
-	public void removeLibraryObjectCase2(LibraryObject eliminate) {
-		LibraryObject father = eliminate.getFather();
-		
-		if(eliminate.getLeft() == null) {
-			
-			LibraryObject hijo = eliminate.getRight();
-			
-			father.setRight(hijo);
-			hijo.setFather(father);
-			
-		}else {
-			
-			LibraryObject hijo = eliminate.getLeft();
-			
-			father.setLeft(hijo);
-			hijo.setFather(father);
-		}
-	}
-	public void removeLibraryObjectCase3(LibraryObject eliminate) {
-		LibraryObject replace = eliminate;
-
-		replace = replace.getLeft();
-		while(replace.getRight() !=null) {
-			replace = replace.getRight();
-			
-		}
-		eliminate.getLeft().setFather(replace);
-		replace.getFather().setRight(replace.getLeft());
-		replace.setLeft(eliminate.getLeft());
-		eliminate.getRight().setFather(replace);
-		replace.setRight(eliminate.getRight());
-		if(eliminate.getFather().getLeft().equals(eliminate)) {
-			eliminate.getFather().setLeft(replace);
-		}else {
-			eliminate.getFather().setRight(replace);
-		}	
 	}
 public void removeShelf(String code) {
 		
-	Shelf eliminate = searchShelf(code);
+		Shelf eliminate = searchShelf(code);
 		
 		if(eliminate != null) {
-			if(eliminate == rootShelf) {
-				removeFather();
-			}else if(eliminate.getLeft() == null && eliminate.getRight() == null) {
+			
+			if(eliminate.getLeft() == null && eliminate.getRight() == null) {
 				
 				removeCase1(eliminate);
 				
@@ -376,7 +244,9 @@ public void removeShelf(String code) {
 				
 				removeCase3(eliminate);
 				
-			}	
+			}
+			
+			
 		}
 		
 	}
@@ -384,14 +254,34 @@ public void removeShelf(String code) {
 	
 		Shelf father = eliminate.getFather();
 		
-			if(father.getLeft().equals(eliminate)) {
+		if(rootShelf == eliminate) {
+			rootShelf = null;
+		}else {
+			if(father.getLeft().getCode().equals(code)) {
 				father.setLeft(null);
 			}else {
 				father.setRight(null);
 			}
+		}
 		
 	}
 	private void removeCase2(Shelf eliminate) {
+		
+		if(eliminate == rootShelf) {
+			
+			if(rootShelf.getLeft() == null) {
+				
+				rootShelf = rootShelf.getRight();
+				
+			}else {
+				
+				rootShelf = rootShelf.getLeft();
+				
+			}
+			
+			rootShelf.setFather(null);
+			
+		}else {
 			
 			Shelf father = eliminate.getFather();
 				
@@ -410,55 +300,14 @@ public void removeShelf(String code) {
 				hijo.setFather(father);
 			}
 			
+		}
 		
 	}
 
 	private void removeCase3(Shelf eliminate) {
-		Shelf replace = eliminate;
-
-			replace = replace.getLeft();
-			while(replace.getRight() !=null) {
-				replace = replace.getRight();
-				
-			}
-			eliminate.getLeft().setFather(replace);
-			replace.getFather().setRight(replace.getLeft());
-			replace.setLeft(eliminate.getLeft());
-			eliminate.getRight().setFather(replace);
-			replace.setRight(eliminate.getRight());
-			if(eliminate.getFather().getLeft().equals(eliminate)) {
-				eliminate.getFather().setLeft(replace);
-			}else {
-				eliminate.getFather().setRight(replace);
-			}	
-	}
+		
 	
-	private void removeFather() {
-		Shelf replace = rootShelf;
-		if(rootShelf.getLeft()!=null) {
-			replace = replace.getLeft();
-			while(replace.getRight() !=null) {
-				replace = replace.getRight();
-				
-			}
-			rootShelf.getLeft().setFather(replace);
-			replace.getFather().setRight(replace.getLeft());
-			replace.setLeft(rootShelf.getLeft());
-			if(rootShelf.getRight()!=null) {
-				rootShelf.getRight().setFather(replace);
-				replace.setRight(rootShelf.getRight());
-			}
-		}else if(rootShelf.getRight()!=null){
-			replace = replace.getRight();
-			while(replace.getLeft() !=null) {
-				replace = replace.getLeft();
-			}
-			replace.getFather().setRight(replace.getLeft());
-			rootShelf.getRight().setFather(replace);
-			replace.setRight(rootShelf.getRight());
-		}else {
-			rootShelf = null;
-		}
+		
 	}
 	public void removeEmployee(String numID) {
 		

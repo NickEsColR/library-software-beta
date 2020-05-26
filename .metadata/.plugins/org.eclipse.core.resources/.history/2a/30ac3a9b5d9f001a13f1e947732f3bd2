@@ -143,11 +143,7 @@ public class LibraryGUI {
     }
     @FXML
     void searchBook(ActionEvent event) {
-    	if(txtTitle.getText().trim().isEmpty()) {
-    		labMsg.setText("digite el nombre del libro o revista");
-    	}else {
-    		
-    	}
+    	
     }
     @FXML
     void showTableChairsMenu(ActionEvent event) throws IOException {
