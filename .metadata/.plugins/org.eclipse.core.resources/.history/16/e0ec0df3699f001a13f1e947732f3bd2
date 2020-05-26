@@ -15,8 +15,11 @@ import model.*;
 public class LibraryGUI {
 		
 	private Library library;
- 
+    @FXML
+    private TextField txtChairCode;
 
+    @FXML
+    private TextField txtTableCode;
     @FXML
     private Label labChairsAmount;
     @FXML
@@ -452,7 +455,7 @@ public class LibraryGUI {
     }
     @FXML
     void addChairToTable(ActionEvent event) {
-    	library.addChairTable(txtChairCode.getText(), txtTableCode.getText());
+    	library.addChairTable(txtCodeChair.getText(), txtCodeTable.getText());
     }
     @FXML
     void showRemoveChair(ActionEvent event) throws IOException {

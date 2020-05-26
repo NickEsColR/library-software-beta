@@ -15,7 +15,6 @@ import model.*;
 public class LibraryGUI {
 		
 	private Library library;
- 
 
     @FXML
     private Label labChairsAmount;
@@ -89,7 +88,10 @@ public class LibraryGUI {
     @FXML
     private TextField txtIdNumClient;
 
+    @FXML
+    void addChairToTable(ActionEvent event) {
 
+    }
     @FXML
     void logIn(ActionEvent event) throws InterruptedException, IOException {
     	if(txtName.getText().equalsIgnoreCase("admin") && txtCode.getText().equalsIgnoreCase("admin")) {
@@ -162,7 +164,7 @@ public class LibraryGUI {
 		 BorderPane menuPane = fxmlLoader.load();	
 		 mainPanel.getChildren().clear();
 		 mainPanel.setCenter(menuPane);
-		 labChairsAmount.setText(Integer.toString(library.peopleCanSit()));
+		 labChairsAmount.setText(library.peopleCanSit());
     }
     @FXML
     void backMenu(ActionEvent event) throws IOException {
@@ -451,10 +453,6 @@ public class LibraryGUI {
 		 mainPanel.setCenter(menuPane);
     }
     @FXML
-    void addChairToTable(ActionEvent event) {
-    	library.addChairTable(txtChairCode.getText(), txtTableCode.getText());
-    }
-    @FXML
     void showRemoveChair(ActionEvent event) throws IOException {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("remove-chair.fxml"));
 		 fxmlLoader.setController(this);    	
@@ -477,20 +475,6 @@ public class LibraryGUI {
 		 BorderPane menuPane = fxmlLoader.load();	
 		 mainPanel.getChildren().clear();
 		 mainPanel.setCenter(menuPane);
-    }
-
-    @FXML
-    void deliverBook(ActionEvent event) throws IOException {
-    	if(txtIdNumBook.getText().trim().isEmpty()|txtIdNumEmployee.getText().trim().isEmpty()|txtIdNumClient.getText().trim().isEmpty()) {
-    		labMsg.setText("Celdas vacias, ¡por favor llene todas las celdas");
-    	}else {
-    		try {
-				library.deliverBookClient(txtIdNumClient.getText(), txtIdNumEmployee.getText(), txtIdNumBook.getText());
-				backEmployeeMenu();
-			} catch (NoPersonException | NoBookException e) {
-				labMsg.setText(e.getMessage());
-			}
-    	}
     }
     @FXML
     void showUnban(ActionEvent event) throws IOException {

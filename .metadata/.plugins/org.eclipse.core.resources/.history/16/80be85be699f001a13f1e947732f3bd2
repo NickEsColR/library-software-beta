@@ -15,7 +15,6 @@ import model.*;
 public class LibraryGUI {
 		
 	private Library library;
- 
 
     @FXML
     private Label labChairsAmount;
@@ -452,8 +451,8 @@ public class LibraryGUI {
     }
     @FXML
     void addChairToTable(ActionEvent event) {
-    	library.addChairTable(txtChairCode.getText(), txtTableCode.getText());
-    }
+
+    
     @FXML
     void showRemoveChair(ActionEvent event) throws IOException {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("remove-chair.fxml"));

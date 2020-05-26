@@ -9,8 +9,6 @@ import thread.SearchEmployeeThread;
 
 public class Library {
 	
-	//attributes
-	private int chairAmount;
 	//relations
 	private Book firstBook;
 	private Person firstPerson;
@@ -18,7 +16,7 @@ public class Library {
 	private LibraryObject rootLibraryObject;
 	
 	public Library() {
-		chairAmount = 0;
+		
 	}
 	
 	public void addEmployee(String name, String lastName, String typeID, String numID, String post) {
@@ -130,18 +128,20 @@ public class Library {
 					current = current.getLeft();
 					if(current == null) {
 						father.setLeft(newShelf);
+						return;
 					}
 				}else {
 					
 					current = current.getRight();
 					if(current == null) {
 						father.setRight(newShelf);
+						return;
 					}
 					
 				}
-			}		
+			}
+			
 		}
-		chairAmount++;
 	}
 	
 	public void addTable(String c) {
@@ -687,13 +687,11 @@ public Employee searchEmployee(String numID) {
 		
 	}	
 	
-	public Book searchBookForName(String name)throws NoBookException {
+	public Book searchBookForName(String name) {
 		
-		Book current = searchBookForName(firstBook, name);
-		if(current == null) {
-			throw new NoBookException(name,"");
-		}
-		return current;
+		Book current = firstBook;
+		
+		return searchBookForName(current, name);
 		
 	}
 	
@@ -891,7 +889,7 @@ public Employee searchEmployee(String numID) {
 		
 	}
 	
-	public void deliverBookClient(String idClient, String idEmployee, String codeBook) throws NoBookException, NoPersonException {
+	public void deliverBookClient(String idClient, String idEmployee, String codeBook) {
 		
 		Book b = searchBookForCode(codeBook);
 		Client c = searchClient(idClient);
@@ -899,21 +897,54 @@ public Employee searchEmployee(String numID) {
 		
 		if(b != null && c != null && e != null) {
 			c.deliverBook();
-		}else if(b == null) {
-			throw new NoBookException("",codeBook);
-		}else if(c == null) {
-			throw new NoPersonException("cliente",idClient);
-		}else if(e == null) {
-			throw new NoPersonException("empleado",idEmployee);
 		}
-		
 		
 	}
 	
 	public int peopleCanSit() {
 		
-		return chairAmount;
+		int can = 0;
+		
+		if(rootLibraryObject != null) {
+			
+			can = peopleCanSit(rootLibraryObject, 0);
+			
+		}
+		
+		return can;
 		
 	}
-
+	
+	private int peopleCanSit(LibraryObject current, int contador) {
+		
+		if(current.getLeft() != null) {
+			
+			if(current instanceof Chair) {
+				
+				if(!(Chair)current.isBusy()) {
+					contador++;
+				}
+				
+			}
+			
+			contador = assessTools(current.getLeft(), nivel, contador);
+			
+			}if(current.getRight() != null) {
+			
+				if(current instanceof Chair) {
+					
+					if(!current.isBusy()) {
+						contador++;
+					}
+					
+				}	
+			
+			contador = assessTools(current.getLeft(), nivel, contador);
+			
+			}
+			
+			return contador;
+		
+	}
+	
 }

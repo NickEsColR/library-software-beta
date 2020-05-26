@@ -15,7 +15,7 @@ import model.*;
 public class LibraryGUI {
 		
 	private Library library;
- 
+    @FXML
 
     @FXML
     private Label labChairsAmount;

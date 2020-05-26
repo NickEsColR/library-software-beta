@@ -891,7 +891,7 @@ public Employee searchEmployee(String numID) {
 		
 	}
 	
-	public void deliverBookClient(String idClient, String idEmployee, String codeBook) throws NoBookException, NoPersonException {
+	public void deliverBookClient(String idClient, String idEmployee, String codeBook) {
 		
 		Book b = searchBookForCode(codeBook);
 		Client c = searchClient(idClient);

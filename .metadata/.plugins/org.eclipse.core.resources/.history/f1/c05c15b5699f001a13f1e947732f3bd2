@@ -15,8 +15,11 @@ import model.*;
 public class LibraryGUI {
 		
 	private Library library;
- 
+    @FXML
+    private TextField txtChairCode;
 
+    @FXML
+    private TextField txtTableCode;
     @FXML
     private Label labChairsAmount;
     @FXML
@@ -89,7 +92,10 @@ public class LibraryGUI {
     @FXML
     private TextField txtIdNumClient;
 
+    @FXML
+    void addChairToTable(ActionEvent event) {
 
+    }
     @FXML
     void logIn(ActionEvent event) throws InterruptedException, IOException {
     	if(txtName.getText().equalsIgnoreCase("admin") && txtCode.getText().equalsIgnoreCase("admin")) {
@@ -452,8 +458,8 @@ public class LibraryGUI {
     }
     @FXML
     void addChairToTable(ActionEvent event) {
-    	library.addChairTable(txtChairCode.getText(), txtTableCode.getText());
-    }
+
+    
     @FXML
     void showRemoveChair(ActionEvent event) throws IOException {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("remove-chair.fxml"));

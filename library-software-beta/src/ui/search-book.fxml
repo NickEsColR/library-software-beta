@@ -17,13 +17,13 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="61.0" layoutY="134.0" text="Numero de estante: ">
+            <Label layoutX="61.0" layoutY="134.0" text="Codigo:">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
             <TextField fx:id="txtTitle" layoutX="141.0" layoutY="75.0" prefHeight="25.0" prefWidth="293.0" />
-            <TextField fx:id="txtShelfNumber" editable="false" layoutX="241.0" layoutY="137.0" prefHeight="25.0" prefWidth="131.0" />
+            <TextField fx:id="txtCode" editable="false" layoutX="141.0" layoutY="137.0" prefHeight="25.0" prefWidth="291.0" />
             <Button layoutX="463.0" layoutY="66.0" mnemonicParsing="false" onAction="#searchBook" text="Buscar">
                <font>
                   <Font size="20.0" />

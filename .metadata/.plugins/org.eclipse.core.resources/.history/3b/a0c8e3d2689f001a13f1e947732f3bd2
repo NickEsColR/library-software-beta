@@ -891,7 +891,7 @@ public Employee searchEmployee(String numID) {
 		
 	}
 	
-	public void deliverBookClient(String idClient, String idEmployee, String codeBook) throws NoBookException, NoPersonException {
+	public void deliverBookClient(String idClient, String idEmployee, String codeBook) {
 		
 		Book b = searchBookForCode(codeBook);
 		Client c = searchClient(idClient);
@@ -899,21 +899,28 @@ public Employee searchEmployee(String numID) {
 		
 		if(b != null && c != null && e != null) {
 			c.deliverBook();
-		}else if(b == null) {
-			throw new NoBookException("",codeBook);
-		}else if(c == null) {
-			throw new NoPersonException("cliente",idClient);
-		}else if(e == null) {
-			throw new NoPersonException("empleado",idEmployee);
 		}
-		
 		
 	}
 	
 	public int peopleCanSit() {
 		
+		int can = 0;
+		
+		if(rootLibraryObject != null) {
+			
+			can = peopleCanSit(rootLibraryObject, 0);
+			
+		}
+		
+		return can;
+		
+	}
+	
+	private int peopleCanSit(LibraryObject current, int contador) {
+		
 		return chairAmount;
 		
 	}
-
+	
 }
