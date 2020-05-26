@@ -1,7 +1,11 @@
 package model;
 
 import customException.NoBookException;
+import customException.NoLeadException;
 import customException.NoPersonException;
+import thread.SearchBookThread;
+import thread.SearchClientThread;
+import thread.SearchEmployeeThread;
 
 public class Library {
 	
@@ -218,9 +222,37 @@ Shelf newShelf = new Shelf(c);
 	public void removeBook(String code) {
 		
 	}
+	public Client getSearchClient(Client c) {
+		return c;
+	}
 	
-	
-	public void leadBook(String cC, String cE, String cB) throws NoPersonException,NoBookException{
+	public void leadBook(String cC, String cE, String cB) throws NoPersonException,NoBookException, NoLeadException, InterruptedException{
+		SearchClientThread scThread = new SearchClientThread(this,cC);
+		SearchEmployeeThread seThread = new SearchEmployeeThread(this,cE);
+		SearchBookThread sbThread = new SearchBookThread(this,cB);
+		scThread.start();
+		seThread.start();
+		sbThread.start();
+		scThread.join();
+		seThread.join();
+		sbThread.join();
+		Client leadC=scThread.getClient();
+		Employee leadE = seThread.getEmployee();
+		Book leadB = sbThread.getBook();  
+		if(leadC == null) {
+			throw new NoPersonException("cliente",cC);
+		}else if(leadE==null) {
+			throw new NoPersonException("empleado",cE);
+		}else if(leadB == null) {
+			throw new NoBookException("",cB);
+		}else {
+			if(leadC.canAddBook()) {
+				leadE.addLeadBook();
+				leadC.leadBook();
+			}else {
+				throw new NoLeadException();
+			}
+		}
 		
 	}
 	

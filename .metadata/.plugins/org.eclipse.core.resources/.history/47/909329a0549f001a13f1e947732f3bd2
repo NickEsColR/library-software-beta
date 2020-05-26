@@ -1,0 +1,19 @@
+package customException;
+
+public class NoBookException extends Exception {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	public NoBookException(String title,String code) {
+	String msg = "";
+		if(title == "") {
+			 msg = "the book with code "+code+" doesn't exist";
+		}else {
+			msg = "the book "+title+" doesn't exist";
+		}
+		super(msg);
+	}
+}

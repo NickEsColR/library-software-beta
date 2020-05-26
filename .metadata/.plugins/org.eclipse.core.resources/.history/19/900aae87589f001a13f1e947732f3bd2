@@ -1,0 +1,10 @@
+package thread;
+
+public class SearchClientThread extends Thread {
+	
+	public SearchClientThread() {}
+	@Override
+	public void run() {
+		
+	}
+}

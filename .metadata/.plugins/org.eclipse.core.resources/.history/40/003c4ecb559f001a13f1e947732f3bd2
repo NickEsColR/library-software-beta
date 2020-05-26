@@ -1,0 +1,7 @@
+package customException;
+
+public class NoLeadException extends Exception {
+	public NoLeadException() {
+		super("no se puede prestar el libro, el cliente ya a superado la cantidad maxima");
+	}
+}

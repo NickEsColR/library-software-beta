@@ -1,6 +1,9 @@
 package ui;
 import java.io.IOException;
 
+import customException.NoBookException;
+import customException.NoLeadException;
+import customException.NoPersonException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -70,7 +73,14 @@ public class LibraryGUI {
 
     @FXML
     private TextField txtTableCode;
+    @FXML
+    private TextField txtIdNumBook;
 
+    @FXML
+    private TextField txtIdNumEmployee;
+
+    @FXML
+    private TextField txtIdNumClient;
 
     @FXML
     void addChairToTable(ActionEvent event) {
@@ -308,12 +318,17 @@ public class LibraryGUI {
 		 mainPanel.setCenter(menuPane);
     }
     @FXML
-    void leadBook(ActionEvent event) throws IOException {
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-employee.fxml"));
-		 fxmlLoader.setController(this);    	
-		 BorderPane menuPane = fxmlLoader.load();	
-		 mainPanel.getChildren().clear();
-		 mainPanel.setCenter(menuPane);
+    void leadBook(ActionEvent event) throws IOException, InterruptedException {
+    	if(txtIdNumBook.getText().trim().isEmpty()|txtIdNumEmployee.getText().trim().isEmpty()|txtIdNumClient.getText().trim().isEmpty()) {
+    		labMsg.setText("Celdas vacias, ¡por favor llene todas las celdas");
+    	}else {
+    		try {
+				library.leadBook(txtIdNumClient.getText(), txtIdNumEmployee.getText(), txtIdNumBook.getText());
+				backEmployeeMenu();
+			} catch (NoPersonException | NoBookException | NoLeadException e) {
+				labMsg.setText(e.getMessage());
+			}
+    	}
     }
     @FXML
     void showRemoveBook(ActionEvent event) throws IOException {

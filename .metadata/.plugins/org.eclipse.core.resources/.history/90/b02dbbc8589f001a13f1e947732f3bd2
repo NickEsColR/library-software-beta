@@ -1,0 +1,16 @@
+package thread;
+
+import model.Library;
+
+public class SearchClientThread extends Thread {
+	private Library library;
+	private String numID;
+	public SearchClientThread(Library library, String id) {
+		this.library = library;
+		numID = id;
+	}
+	@Override
+	public void run() {
+		library.getSearchClient(library.searchClient(numID));
+	}
+}

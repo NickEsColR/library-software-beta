@@ -4,5 +4,5 @@ public interface PostRestriction  {
 	
 	//methods
 	
-	public String postRestriction();
+	public boolean postRestriction();
 }

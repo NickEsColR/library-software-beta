@@ -28,9 +28,8 @@ public class Employee extends Person implements PostRestriction{
 	}
 
 	@Override
-	public String postRestriction() {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean postRestriction() {
+		return post.equals("admin") ? true : false;
 	}
 	
 }
