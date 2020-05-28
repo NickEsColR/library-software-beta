@@ -1,5 +1,0 @@
-package customException;
-
-public class NoPersonException extends Exception {
-
-}

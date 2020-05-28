@@ -1,5 +1,0 @@
-package customException;
-
-public class NoBookException extends Exception {
-
-}

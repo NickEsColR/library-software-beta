@@ -8,4 +8,13 @@
 <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
 <fullyQualifiedTypeName name="javafx.scene.control.Label"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="javafx.scene.control.TextArea"/>
+<fullyQualifiedTypeName name="customException.NoPersonException"/>
+<fullyQualifiedTypeName name="customException.NoBookException"/>
+<fullyQualifiedTypeName name="customException.NoLeadException"/>
+<fullyQualifiedTypeName name="thread.SearchClientThread"/>
+<fullyQualifiedTypeName name="model.Client"/>
+<fullyQualifiedTypeName name="thread.SearchEmployeeThread"/>
+<fullyQualifiedTypeName name="model.Library"/>
+<fullyQualifiedTypeName name="thread.SearchBookThread"/>
 </qualifiedTypeNameHistroy>
